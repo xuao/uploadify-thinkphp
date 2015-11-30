@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>UploadiFive Test</title>
 <script src="http://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script src="/uploadify/Public/plug-ins/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="/uploadify/Public/plug-ins/uploadify/uploadify.css">
+<script src="/think/Public/plug-ins/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/think/Public/plug-ins/uploadify/uploadify.css">
 <style type="text/css">
 body {
 	font: 13px Arial, Helvetica, Sans-serif;
@@ -31,7 +31,7 @@ body {
 					'timestamp' : '<?php echo $timestamp;?>',
 					'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
 				},
-				'swf'      : '/uploadify/Public/plug-ins/uploadify/uploadify.swf',
+				'swf'      : '/think/Public/plug-ins/uploadify/uploadify.swf',
 				'uploader' : 'index.php/Home/Index/uploadify',
 				'onUploadSuccess' 	: function(file, data, response) {	
 					
