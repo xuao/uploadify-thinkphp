@@ -33,7 +33,6 @@ class Dispatcher {
         }elseif(IS_CLI){ // CLI模式下 index.php module/controller/action/params/...
             $_SERVER['PATH_INFO'] = isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : '';
         }
-
         // 开启子域名部署
         if(C('APP_SUB_DOMAIN_DEPLOY')) {
             $rules      = C('APP_SUB_DOMAIN_RULES');
@@ -87,8 +86,8 @@ class Dispatcher {
                         if(false !== $pos) {
                             // 泛域名作为参数
                             $parms[$pos] = $panDomain;
-                        }                         
-                    }                   
+                        }
+                    }
                     $_GET   =  array_merge($_GET,$parms);
                 }
             }
@@ -119,7 +118,7 @@ class Dispatcher {
             define('__INFO__',trim($_SERVER['PATH_INFO'],'/'));
             // URL后缀
             define('__EXT__', strtolower(pathinfo($_SERVER['PATH_INFO'],PATHINFO_EXTENSION)));
-            $_SERVER['PATH_INFO'] = __INFO__;     
+            $_SERVER['PATH_INFO'] = __INFO__;
             if(!defined('BIND_MODULE') && (!C('URL_ROUTER_ON') || !Route::check())){
                 if (__INFO__ && C('MULTI_MODULE')){ // 获取模块名
                     $paths      =   explode($depr,__INFO__,2);

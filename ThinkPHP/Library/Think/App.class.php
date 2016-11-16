@@ -45,8 +45,7 @@ class App {
 		}
 
         // URL调度结束标签
-        Hook::listen('url_dispatch');         
-
+        Hook::listen('url_dispatch');
         define('IS_AJAX',       ((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') || !empty($_POST[C('VAR_AJAX_SUBMIT')]) || !empty($_GET[C('VAR_AJAX_SUBMIT')])) ? true : false);
 
         // TMPL_EXCEPTION_FILE 改为绝对地址
@@ -60,7 +59,7 @@ class App {
      * @return void
      */
     static public function exec() {
-    
+        
         if(!preg_match('/^[A-Za-z](\/|\w)*$/',CONTROLLER_NAME)){ // 安全检测
             $module  =  false;
         }elseif(C('ACTION_BIND_CLASS')){
@@ -85,6 +84,8 @@ class App {
             // 操作绑定到类后 固定执行run入口
             $action  =  'run';
         }else{
+            // dump(CONTROLLER_NAME);
+            // dump(CONTROLLER_PATH);
             //创建控制器实例
             $module  =  controller(CONTROLLER_NAME,CONTROLLER_PATH);                
         }
@@ -101,11 +102,12 @@ class App {
                 E(L('_CONTROLLER_NOT_EXIST_').':'.CONTROLLER_NAME);
             }
         }
-
+        
         // 获取当前操作名 支持动态路由
         if(!isset($action)){
             $action    =   ACTION_NAME.C('ACTION_SUFFIX');  
         }
+
         try{
             if(!preg_match('/^[A-Za-z](\w)*$/',$action)){
                 // 非法操作
